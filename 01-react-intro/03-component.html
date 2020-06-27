@@ -9,8 +9,10 @@
     <script src="react-dom.development.js"></script>
     <script src="babel.min.js"></script>
     <script type="text/babel">
-        class Greeter extends React.Component{
+        //Using Ref
+        /* class Greeter extends React.Component{
             
+            txtUserNameRef = React.createRef();
 
             //UI State
             state = { 
@@ -19,19 +21,57 @@
             
             //UI Behavior
             onBtnGreetClick = () => {
-                this.setState({ message : 'Hi there!'});
-                console.log('message is changed');
+                const userName = this.txtUserNameRef.current.value;
+                this.setState({ message : `Hi ${userName}, Have a nice day!` });
             }
             
             //presentation
             render(){
-                
+                var l = this.txtUserNameRef.current ? this.txtUserNameRef.current.value.length : '';
                 return(
                     <div>
                         <h1>Greeter</h1>
                         <hr/>
                         <label htmlFor="">User Name :</label>
-                        <input type="text" />
+                        <input type="text" ref={this.txtUserNameRef} />
+                        <span> [ {l} ] </span>
+                        <input type="button" value="Greet" onClick={this.onBtnGreetClick} />
+                        <div>{this.state.message}</div>
+                    </div>
+                );
+            }
+        } */
+
+
+        //using state instead of Ref
+        class Greeter extends React.Component{
+            
+            //UI State
+            state = { 
+                message : '[Default greet message]',
+                userName : ''
+            };
+            
+            //UI Behavior
+            onBtnGreetClick = () => {
+                const userName = this.state.userName;
+                this.setState({ message : `Hi ${userName}, Have a nice day!` });
+            }
+
+            onTxtUserNameChange = (evt) => {
+                const userName = evt.target.value;
+                this.setState({ userName : userName });
+            }
+            
+            //presentation
+            render(){
+                return(
+                    <div>
+                        <h1>Greeter</h1>
+                        <hr/>
+                        <label htmlFor="">User Name :</label>
+                        <input type="text" onChange={this.onTxtUserNameChange} />
+                        <span> [ {this.state.userName.length} ] </span>
                         <input type="button" value="Greet" onClick={this.onBtnGreetClick} />
                         <div>{this.state.message}</div>
                     </div>
@@ -39,7 +79,8 @@
             }
         }
 
-        ReactDOM.render(React.createElement(Greeter), document.getElementById('root'));
+        /* ReactDOM.render(React.createElement(Greeter), document.getElementById('root')); */
+        ReactDOM.render(<Greeter/>, document.getElementById('root'));
     </script>
 </head>
 <body>
