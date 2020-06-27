@@ -16,18 +16,36 @@
         var counter = 0;
         function onBtnRenderClick(){
             ++counter;
-            document.getElementById('spanCounter').innerText = counter;
 
-            var h1 = React.createElement('h1', { id: 'heading-1' }, 'React Intro - ' + counter)
-            ReactDOM.render(h1, document.getElementById('root'))
+            var appEle = React.createElement('div', null, 
+                React.createElement('h1', null, 'React Intro'),
+                React.createElement('hr'),
+                React.createElement('div', null,
+                    React.createElement('span', null, 'Counter : '),
+                    React.createElement('span', null, counter),
+                ),
+                React.createElement('section', null,
+                    React.createElement('h3', null, 'Introduction'),
+                    React.createElement('h4'),
+                    React.createElement('p', null, 'Labore id ipsum ut consequat laboris velit dolore excepteur aliqua ipsum. Culpa voluptate cillum reprehenderit anim et labore occaecat. Velit ex cillum mollit non id ea tempor quis labore et esse enim nulla.'),
+                    React.createElement('p', null, 'Consequat reprehenderit veniam ex Lorem duis minim. Veniam consequat est dolore consequat nulla dolore laboris proident quis pariatur. Labore adipisicing laboris nulla quis commodo labore incididunt. Dolore minim amet aute pariatur est pariatur in nisi. Incididunt consectetur amet ea consectetur non laborum voluptate amet exercitation dolore aliqua occaecat est. Et deserunt Lorem nostrud ea duis consequat laboris voluptate officia. Aliquip occaecat ad commodo aliquip est occaecat laboris dolor nisi nulla qui eiusmod magna reprehenderit.'),
+                    React.createElement('p', null, 'Nostrud exercitation ut aute esse sint ex do commodo officia id. Esse labore aliquip non duis. Tempor irure ea in et qui laboris excepteur et excepteur consequat. Voluptate tempor magna minim consectetur adipisicing sit tempor enim mollit cillum irure cillum fugiat culpa. Velit velit pariatur deserunt tempor aliquip enim. Officia dolore nostrud in quis eiusmod cillum ex tempor laboris. Commodo magna irure eiusmod ipsum dolore id ut commodo pariatur laborum dolor minim nisi occaecat.'), 
+                ),
+                React.createElement('section', null,
+                    React.createElement('h3', null, 'Advantages'),
+                    React.createElement('ol', null, 
+                        React.createElement('li', null, 'Declarative'),
+                        React.createElement('li', null, 'Efficient Rendering'),
+                    )
+                ),
+            );
+
+            ReactDOM.render(appEle, document.getElementById('root'));
+
         }
     </script>
 </head>
 <body>
-    <div>
-        <span>Counter : </span>
-        <span id="spanCounter">0</span>
-    </div>
     <input type="button" value="Render" id="btnRender">
     <div id="root"></div>
 </body>
