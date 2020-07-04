@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 /* import App from './App'; */
 import * as serviceWorker from './serviceWorker';
-import SalaryCalculator from './salaryCalculator';
+/* import SalaryCalculator from './salaryCalculator'; */
+import BugTracker from "./bugTracker";
 
 ReactDOM.render(
   <React.StrictMode>
     <h1>My App</h1>
     <hr/>
-    <SalaryCalculator />
+    <BugTracker/>
   </React.StrictMode>,
   document.getElementById('root')
 );
