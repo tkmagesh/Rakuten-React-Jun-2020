@@ -24,7 +24,7 @@
     <script src="babel.min.js"></script>
     <title>Salary Calculator</title>
     <script type="text/babel">
-        class SalaryCalculator extends React.Component{
+         class SalaryCalculator extends React.Component{
             state = {
                 basic : 0,
                 hra : 0,
@@ -65,12 +65,80 @@
                                 max="30" 
                                 value={tax} 
                             />
-                            {/* <input 
+                        </div>
+                        <div className="field">
+                            <input type="button" value="Calculate" onClick={this.onCalculateClick}/>
+                        </div>
+                        {/* <SalaryCalculatorResult basic={basic} hra={hra} da={da} tax={tax} salary={salary}/> */}
+                        <SalaryCalculatorResult {...{basic, hra, da, tax, salary}} />
+                    </section>
+                )
+            }
+        }
+
+        class SalaryCalculatorResult extends React.Component{
+            render = () => {
+                const { basic, hra, da, tax, salary } = this.props;
+                return(
+                    <div className="field">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>{basic}</td>
+                                    <td>{hra}</td>
+                                    <td>{da}</td>
+                                    <td>{tax}</td>
+                                    <td>{salary}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                )
+            }
+        }
+
+        /* class SalaryCalculator extends React.Component{
+            state = {
+                salary : 0
+            };
+
+            hra = 0;
+            da = 0;
+            tax = 0;
+            basic = 0;
+
+            onCalculateClick = () => {
+                const { basic,hra,da,tax} = this,
+                    gross = basic + hra + da,
+                    net = gross * ((100-tax)/100);
+                this.setState({salary : net});
+            }
+
+            render = () => {
+                const { salary } = this.state;
+                return(
+                    <section>
+                        <div className="field">
+                            <label htmlFor="">Basic :</label>
+                            <input type="number" onChange={ evt => this.basic = evt.target.valueAsNumber} />
+                        </div>
+                        <div className="field">
+                            <label htmlFor="">HRA :</label>
+                            <input type="number" onChange={ evt => this.hra = evt.target.valueAsNumber} />
+                        </div>
+                        <div className="field">
+                            <label htmlFor="">DA :</label>
+                            <input type="number" onChange={ evt => this.da = evt.target.valueAsNumber} />
+                        </div>
+                        <div className="field">
+                            <label htmlFor="">Tax :</label>
+                            <input 
                                 type="range" 
+                                onChange={ evt => this.tax = evt.target.valueAsNumber} 
                                 min="0" 
                                 max="30" 
                                 defaultValue="0"
-                            /> */}
+                            />
                         </div>
                         <div className="field">
                             <input type="button" value="Calculate" onClick={this.onCalculateClick}/>
@@ -79,10 +147,10 @@
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>{basic}</td>
-                                        <td>{hra}</td>
-                                        <td>{da}</td>
-                                        <td>{tax}</td>
+                                        <td>{this.basic}</td>
+                                        <td>{this.hra}</td>
+                                        <td>{this.da}</td>
+                                        <td>{this.tax}</td>
                                         <td>{salary}</td>
                                     </tr>
                                 </tbody>
@@ -91,7 +159,7 @@
                     </section>
                 )
             }
-        }
+        } */
 
         ReactDOM.render(<SalaryCalculator/>, document.getElementById('root'));
 
