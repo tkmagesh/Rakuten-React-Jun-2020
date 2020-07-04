@@ -15,20 +15,31 @@
     </style>
     <script type="text/babel">
          class Products extends React.Component{
+            state = { 
+                productNames : [],
+                newProductName : ''
+            };
+
+            onAddNewClick = () => {
+                const { productNames, newProductName } = this.state;
+                this.setState({ productNames : [...productNames, newProductName ] });
+            }
+
+            componentDidMount = () => {
+                console.log('component is mounted');
+            }
+
             render = () => {
-                const productNames = [  ];
+                const { productNames } = this.state;
                 const productItems = productNames.map((productName, index) => (<li key={index}>{productName}</li>));
                 return(
                     <>
                         <h1>Products</h1>
                         <hr/>
-                        <div>
-                            <span>Products # : </span>
-                            <span> 0 </span>
-                        </div>
+                        <ProductsCount data={productNames.length} />
                         <label>Product Name : </label>
-                        <input type="text" />
-                        <input type="button" value="Add New"/>
+                        <input type="text" onChange={ evt => this.setState({newProductName : evt.target.value})} />
+                        <input type="button" value="Add New" onClick={this.onAddNewClick}/>
                         <section>
                             <ul>
                                 {productItems}
@@ -38,6 +49,24 @@
                 )
             }
         }
+
+        //Functional component
+        /* const ProductsCount = (props) => {
+            return (
+                <div>
+                    <span>Products # : </span>
+                    <span> {props.data} </span>
+                </div>
+            )
+        }; */
+
+        const ProductsCount = ({data}) => (
+            <div>
+                <span>Products # : </span>
+                <span> {data} </span>
+            </div>
+        );
+        
 
         ReactDOM.render(<Products/>, document.getElementById('root'))
     </script>
