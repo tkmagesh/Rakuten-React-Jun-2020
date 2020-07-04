@@ -18,6 +18,12 @@
             font-size: 18pt;
             padding-right: 10px;
         }
+        .goodSalary{
+            color : green;
+        }
+        .poorSalary{
+            color : red;
+        }
     </style>
     <script src="react.development.js"></script>
     <script src="react-dom.development.js"></script>
@@ -79,6 +85,8 @@
         class SalaryCalculatorResult extends React.Component{
             render = () => {
                 const { basic, hra, da, tax, salary } = this.props;
+                const poorSalary = (<td className="poorSalary">{salary}</td>),
+                    goodSalary = (<td className="goodSalary">{salary}</td>)
                 return(
                     <div className="field">
                         <table>
@@ -88,7 +96,7 @@
                                     <td>{hra}</td>
                                     <td>{da}</td>
                                     <td>{tax}</td>
-                                    <td>{salary}</td>
+                                    { salary === 0 ? null : (salary < 10000 ? poorSalary : goodSalary )}
                                 </tr>
                             </tbody>
                         </table>
