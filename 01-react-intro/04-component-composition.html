@@ -53,16 +53,14 @@
                         <SalaryCalculatorInput labelText="Basic :" onValueChange={ value => this.setState({basic : value})} />
                         <SalaryCalculatorInput labelText="HRA :" onValueChange={ value => this.setState({hra : value})} />
                         <SalaryCalculatorInput labelText="DA :" onValueChange={ value => this.setState({da : value})} />
-                        <div className="field">
-                            <label htmlFor="">Tax :</label>
-                            <input 
-                                type="range" 
-                                onChange={ evt => this.setState({'tax' : evt.target.valueAsNumber} )} 
-                                min="0" 
-                                max="30" 
-                                value={tax} 
-                            />
-                        </div>
+                        <SalaryCalculatorInput 
+                            labelText="Tax :" 
+                            type="range"
+                            onValueChange={ value => this.setState({tax : value})} 
+                            min="0" 
+                            max="30" 
+                            value={tax}
+                        />
                         <div className="field">
                             <input type="button" value="Calculate" onClick={this.onCalculateClick}/>
                         </div>
@@ -75,11 +73,15 @@
 
         class SalaryCalculatorInput extends React.Component{
             render = () => {
-                const { labelText, onValueChange } = this.props;
+                const { labelText, onValueChange, type ='number', ...attrs } = this.props;
                 return(
                     <div className="field">
                         <label htmlFor="">{labelText}</label>
-                        <input type="number" onChange={ evt => onValueChange(evt.target.valueAsNumber) } />
+                        <input 
+                            type={type} 
+                            onChange={ evt => onValueChange(evt.target.valueAsNumber) } 
+                            {...attrs}
+                        />
                     </div>
                 )
             }
