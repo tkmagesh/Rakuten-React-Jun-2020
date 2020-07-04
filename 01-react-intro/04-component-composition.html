@@ -50,7 +50,7 @@
                 const { basic, hra, da, tax, salary } = this.state;
                 return(
                     <section>
-                        <SalaryCalculatorInput labelText="Basic :" onValueChange={ value => this.setState({basic : value})} />
+                        <SalaryCalculatorInput labelText="Basic :" onValueChange={ value => this.setState({basic : value || 0})} />
                         <SalaryCalculatorInput labelText="HRA :" onValueChange={ value => this.setState({hra : value})} />
                         <SalaryCalculatorInput labelText="DA :" onValueChange={ value => this.setState({da : value})} />
                         <SalaryCalculatorInput 
